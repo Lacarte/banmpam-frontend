@@ -1,0 +1,304 @@
+<form [formGroup]="sendGiftForm" class="normal-form">
+  <input type="hidden" formControlName="id_key" />
+  <input type="hidden" formControlName="id_key_sender" />
+  <input type="hidden" formControlName="id_key_receiver" />
+  <input type="hidden"  formControlName="id_key_user" />
+  <!-- //TODO responsive card -->
+
+  <mat-grid-list cols="2"  rowHeight = "500px">
+    <mat-grid-tile>
+      <mat-card class="dashboard-card rs-card">
+        <mat-card-header>
+          <mat-card-title>
+            Sender Info
+            <button
+              mat-icon-button
+              class="more-button"
+              [matMenuTriggerFor]="menu"
+              aria-label="Toggle menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="row no-gutters flex-row-reverse mb-4">
+            <button
+              (click)="dialogPickSender()"
+              mat-raised-button
+              class="col-sm-6"
+              color="primary"
+              aria-label="Example icon-button with a heart icon"
+            >
+              <mat-icon fontSet="fas" fontIcon="fa-search"></mat-icon>
+              &nbsp; Pick Sender
+              <!-- <mat-icon  matSuffix >search</mat-icon> -->
+              <!-- <i class="fab "></i> -->
+            </button>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-sm-6">
+              <input
+                matInput
+                placeholder="First Name"
+                formControlName="senderFirstName"  required/>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-6">
+              <input
+                matInput
+                placeholder="Last Name"
+                formControlName="senderLastName"     required/>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="col-sm-6">
+              <mat-label>Doc Type</mat-label>
+              <mat-select #fontSize value="ID" formControlName="senderDocType">
+
+                <mat-option>
+                  <span mat-button>
+                    <mat-icon fontSet="fas" fontIcon="fa-plus">
+                   </mat-icon>
+                  </span>
+                </mat-option>
+
+                <mat-option *ngFor="let doctype of doctypes" [value]="doctype.id">{{
+                  doctype.descripcion
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-6">
+              <input
+                type="text"
+                matInput
+                placeholder="ID"
+                formControlName="senderIdNumber"     required/>
+              <mat-error>This field is required</mat-error>
+              <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+              <mat-icon
+                matSuffix
+                fontSet="fas"
+                fontIcon="fa-id-card"
+              ></mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-sm-6">
+              <span matPrefix>+&nbsp;</span>
+              <input
+              type="tel"
+              matInput
+              placeholder="Phone"
+              formControlName="senderTel"
+              inputmode="tel"
+              required/>
+              <mat-error
+              >This field is required</mat-error
+              >
+              <mat-error
+              >Minimum 8 Digits needed</mat-error
+              >
+              <mat-icon
+              matSuffix
+              fontSet="fas"
+              fontIcon="fa-phone"
+            ></mat-icon>
+            </mat-form-field>
+
+
+            <mat-form-field class="col-sm-6">
+              <input matInput placeholder="Email"   inputmode="email" formControlName="senderEmail">
+              <mat-error *ngIf="sendGiftForm.hasError('email')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="sendGiftForm.hasError('required') && sendGiftForm.get('email').touched">
+                Email is <strong>required</strong>
+              </mat-error>
+              <mat-icon
+                matSuffix
+                fontSet="fas"
+                fontIcon="fa-at"
+              ></mat-icon>
+            </mat-form-field>
+
+
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-card class="dashboard-card rs-card">
+        <mat-card-header>
+          <mat-card-title>
+            Receiver Info
+            <button
+              mat-icon-button
+              class="more-button"
+              [matMenuTriggerFor]="menu"
+              aria-label="Toggle menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="row">
+            <mat-form-field class="col-sm-6">
+              <input
+                matInput
+                placeholder="First Name"
+                formControlName="receiverFirstName"  required/>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-6">
+              <input
+                matInput
+                placeholder="Last Name"
+                formControlName="receiverLastName"  required/>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="col-sm-6">
+              <mat-icon
+                matSuffix
+                fontSet="fas"
+                fontIcon="fa-globe-americas"
+              ></mat-icon>
+
+              <mat-label>Country</mat-label>
+              <mat-select
+                #fontSize
+                value="dominicanrepublic"
+                formControlName="receiverCountry"
+                required>
+              <mat-option>
+                  <span mat-button>
+                    <mat-icon fontSet="fas" fontIcon="fa-plus">
+                   </mat-icon>
+                  </span>
+                </mat-option>
+
+                <mat-option *ngFor="let pais of pais" [value]="pais">{{
+                  pais.nombre
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-6">
+              <span matPrefix>+ &nbsp;</span>
+              <input
+                type="tel"
+                matInput
+                placeholder="Phone"
+                formControlName="receiverTel"  required/>
+              <mat-error
+                >This field is required</mat-error
+              >
+              <mat-error
+                >Minimum 8 Digits needed</mat-error
+              >
+              <mat-icon
+              matSuffix
+              fontSet="fas"
+              fontIcon="fa-phone"
+            ></mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="col-sm-6">
+              <mat-icon matSuffix fontSet="fas" fontIcon="fa-gifts"></mat-icon>
+              <mat-label>Gift Value</mat-label>
+
+              <mat-select #fontSize  formControlName="giftValue"  required>
+
+               <mat-option>
+                      <span mat-button>
+                        <mat-icon fontSet="fas" fontIcon="fa-plus">
+                       </mat-icon>
+                      </span>
+                    </mat-option>
+
+                <mat-option
+                  *ngFor="let _giftValue of giftValues"
+                  [value]="_giftValue"
+                  (click)="setGiftData($event)">{{ _giftValue.value }}</mat-option>
+
+              </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field class="col-sm-6">
+              <input
+                type="text"
+                matInput
+                placeholder="Gift description"
+                formControlName="giftDescription"
+              />
+            </mat-form-field>
+          </div>
+
+
+          <div class="row review mt-3">
+            <div class="col-sm-6 review-field-left" ><h4>REVIEW</h4></div>
+            <div class="col-sm-6 review-field-right"></div>
+          </div>
+          <div class="row review">
+            <div class="col-sm-6 review-field-left">Value</div>
+            <div class="col-sm-6 review-field-right">${{giftData.giftValue}}</div>
+          </div>
+          <div class="row review">
+            <div class="col-sm-6 review-field-left">Fee</div>
+            <div class="col-sm-6 review-field-right">${{giftData.fee | number:'.2'}}</div>
+          </div>
+          <div class="row review">
+            <div class="col-sm-6 review-field-left">Total</div>
+            <!-- <div class="col-sm-6 review-field-right" *ngIf="sendGiftForm.get('id_giftValue').value.value" >{{addPrice(sendGiftForm.get('id_giftValue').value.value,fee)}}</div> -->
+            <div class="col-sm-6 review-field-right"  >${{ giftData.total | number:'.2'}}</div>
+
+          </div>
+
+          <div class="row no-gutters mt-4">
+            <button
+              class="col-sm-3"
+              mat-button
+              aria-label="Example icon-button with a heart icon"
+              (click)="onClear()">
+
+              <mat-icon>clear</mat-icon>
+              &nbsp; Clear All
+            </button>
+
+            <button
+              mat-raised-button
+              color="primary"
+              class="col-sm-6 ml-auto" [ngClass]="{'spinner': isLoading}"    type="button"
+              (click)="onSubmit()"
+              [disabled]="sendGiftForm.invalid || isLoading">
+              <mat-icon fontSet="fas" fontIcon="fa-paper-plane"></mat-icon>
+              &nbsp; Send
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

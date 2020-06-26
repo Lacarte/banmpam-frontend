@@ -1,0 +1,108 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+//to be able to imoirte primary theme color
+@import "./theme.scss";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+// Imports functions, variables, and mixins that are needed by other Bootstrap files
+@import "variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+// Import Bootstrap Reboot
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid"; // add the grid
+@import "~bootstrap/scss/utilities"; // add css utilities
+@import "reset";
+@import "~bootstrap/scss/tables";
+
+
+
+html, body { height: 100%; }
+body {
+   margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+   font-size: 0.5 rem;
+}
+
+
+.success{
+background-color: #2d735c !important;
+color: white;
+font-weight: 500;
+}
+
+
+
+//to customize all scrollbar in the app
+
+*::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar {
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+
+
+*::-webkit-scrollbar-thumb {
+	background-color: mat-color($my-custom-primary, default);
+}
+
+
+
+//TODO
+//to customize color of send btn to the primary color
+
+
+.title-header {
+  font-size: 1.20rem;
+  /* font-weight: bold; */
+  text-transform: capitalize;
+  // margin: 16px;
+}
+
+
+.mat-tab-label.mat-tab-label-active{
+  background-color: #eae5e5;;
+}
+
+
+.mat-sidenav-content.mat-drawer-content.mat-sidenav-content {
+  background-image: url("./assets/bgwall.jpg");
+}
+
+
+ .row-reverse {
+   flex-direction: row-reverse;
+ }
+
+
+ .fas{
+  font-size: larger;
+  line-height: 1.5;
+}
+
+
+.mat-form-field-suffix .mat-icon{
+  font-size: 110% !important;
+}
+
+
+
+.mat-tab-body.mat-tab-body-active {
+  animation: fade 1s;
+}
+
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

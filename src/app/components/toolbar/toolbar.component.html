@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" *ngIf="isOpen">
+    <mat-toolbar-row>
+      <!-- <button mat-icon-button (click)="drawer.toggle()"> -->
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="toolbar-icon">
+        <img  routerLink="/" src="./assets/logo.png" />
+      </span>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+    <mat-menu #menu="matMenu" [overlapTrigger]="true">
+      <button mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>people_outline</mat-icon>
+        <span>Connecting</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>videocam</mat-icon>
+        <span>Let's talk</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>

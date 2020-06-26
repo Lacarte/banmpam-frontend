@@ -1,0 +1,30 @@
+<div class="dialog-wrapper">
+
+  <div class="dialog-content mt-4">
+    Do you want to <span class="bold">LOGOUT</span> ?
+  </div>
+
+  <div class="row no-gutters flex-row-reverse mt-4">
+    <button
+      (click)="onYesClick()"
+      tabindex="-1"
+      class="col-sm-6"
+      color="primary"
+      mat-raised-button
+      aria-label="Example icon-button with a heart icon">
+
+      <mat-icon fontSet="fas" fontIcon="fa-check"></mat-icon>
+      &nbsp; YES
+    </button>
+
+    <button
+      mat-dialog-close
+      tabindex="1"
+      mat-raised-button
+      class="col-sm-3 ml-auto mr-4"
+      type="button"
+    >
+      &nbsp; NO
+    </button>
+  </div>
+</div>

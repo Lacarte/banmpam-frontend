@@ -1,0 +1,112 @@
+<mat-sidenav-container class="mat-drawer-transition"  autosize>
+  <mat-sidenav [(opened)]="isOpen" mode="side" opened role="navigation" class="nav-theme sidenav">
+    <div class="signal-container">
+       <div class="signal"  [ngClass]="[(isConnected)?'connected':'disconnected']"></div>
+       <!-- <div class="signal"  [ngClass]="[(isConnected)?'connected':'disconnected',(pss.connected$) ?'server-connected':'server-disconnected']"></div> -->
+    </div>
+
+        <mat-nav-list>
+
+      <mat-list-item
+      (click)="isSidenaveText = !isSidenaveText"
+      [disableRipple]="true"
+      >
+        <mat-icon mat-list-icon>short_text</mat-icon>
+      </mat-list-item>
+
+
+
+      <mat-divider></mat-divider>
+
+      <!-- <a mat-list-item routerLink='/first'>First Component</a> -->
+      <mat-list-item routerLink="/process" routerLinkActive="active"  matTooltip="Send/Receive"
+      matTooltipPosition="right"  >
+
+      <mat-icon mat-list-icon>device_hub</mat-icon>
+      <div *ngIf="isSidenaveText" class="sidenav-item">
+        <span class="lead">S./rec.</span>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item routerLink="/balance" routerLinkActive="active">
+      <mat-icon mat-list-icon>monetization_on</mat-icon>
+      <div *ngIf="isSidenaveText" class="sidenav-item">
+        <span class="lead">Balance</span>
+      </div>
+    </mat-list-item>
+
+
+    <mat-list-item routerLink="/report" routerLinkActive="active">
+      <mat-icon mat-list-icon>insert_chart</mat-icon>
+      <div *ngIf="isSidenaveText" class="sidenav-item">
+        <span class="lead">Report</span>
+      </div>
+    </mat-list-item>
+
+    <mat-divider  *ngIf="securityObject.canAccessAdmin" ></mat-divider>
+
+
+
+        <mat-list-item routerLink="/admin"  *ngIf="securityObject.canAccessAdmin" routerLinkActive="active">
+          <mat-icon mat-list-icon fontSet="fas" fontIcon="fa-cogs"></mat-icon>
+          <div *ngIf="isSidenaveText" class="sidenav-item">
+            <span class="lead">Admin</span>
+          </div>
+        </mat-list-item>
+
+
+      <mat-divider></mat-divider>
+
+
+      <mat-list-item (click)="openDialog()">
+        <!-- <mat-icon mat-list-icon>insert_chart</mat-icon> -->
+        <mat-icon mat-list-icon fontSet="fas" fontIcon="fa-sign-out-alt" color="warn"></mat-icon>
+        <div *ngIf="isSidenaveText" class="sidenav-item">
+          <span class="lead">Logout</span>
+        </div>
+      </mat-list-item>
+
+
+			<mat-accordion multi="true" [displayMode]="displayMode">
+				<mat-expansion-panel class="no-shadow">
+					<mat-expansion-panel-header fxLayout="row" [expandedHeight]="expandHeight"
+						[collapsedHeight]="collapseHeight">
+
+						<mat-panel-title>
+							<mat-icon mat-list-icon class="icon-fas" fontSet="fas" fontIcon="fa-shield-alt"></mat-icon>
+							<span>Procesos</span>
+						</mat-panel-title>
+
+					</mat-expansion-panel-header>
+
+          <mat-nav-list class="ml-0" dense>
+
+						<mat-divider class="submenu-divider"></mat-divider>
+						<mat-list-item routerLink="/iteracion" routerLinkActive="active">
+							<span class="item-description"><span class="active-indicator"></span>Iteraciones</span>
+						</mat-list-item>
+
+						<mat-divider class="submenu-divider"></mat-divider>
+						<mat-list-item routerLink="/asignacion" routerLinkActive="active">
+							<span class="item-description"><span class="active-indicator"></span>Asignaciones</span>
+						</mat-list-item>
+
+
+          	<mat-divider class="submenu-divider"></mat-divider>
+						<mat-list-item routerLink="/capturas-pendientes" routerLinkActive="active">
+							<span class="item-description"><span class="active-indicator"></span>Capturas Pendientes</span>
+						</mat-list-item>
+
+					</mat-nav-list>
+				</mat-expansion-panel>
+			</mat-accordion>
+
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-main-dashboard></app-main-dashboard>
+  </mat-sidenav-content>
+</mat-sidenav-container>

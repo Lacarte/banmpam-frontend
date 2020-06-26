@@ -1,0 +1,124 @@
+
+
+model
+https://adminlte.io/themes/AdminLTE/pages/examples/invoice.html
+
+//row selected from table
+https://stackoverflow.com/questions/46025930/how-to-capture-selected-table-row-in-a-material-design-md-table
+
+
+
+var x = [
+{'id': 1, 'receiverFirstName': 'Olga', 'receiverLastName': 'Lacarte', 'receiverId': '234'},
+{'id': 1, 'receiverFirstName': 'Olga', 'receiverLastName': 'Lacarte', 'receiverId': '342'},
+{'id': 1, 'receiverFirstName': 'Olga', 'receiverLastName': 'Lacarte', 'receiverId': '543'},
+{'id': 1, 'receiverFirstName': 'a', 'receiverLastName': 'b', 'receiverId':'undefined'},
+{'id': 1, 'receiverFirstName': 'x', 'receiverLastName': 'y', 'receiverId': 'undefined'}
+]
+
+var characters = [
+  { 'name': 'barney', 'age': 42,  'pet': 'dog' },
+  { 'name': 'barney',   'age': 42,  'pet': 'dog' },
+];
+
+var result=_.chain(x).groupBy("receiverFirstName").map(function(v, i) {
+  return {
+    receiverFirstName: i,
+    receiverLastName: _.get(_.find(v, 'receiverLastName'), 'receiverLastName')
+  }
+}).value();
+
+document.body.innerHTML = '<pre>' + JSON.stringify(result, null, '  ') + '</pre>';
+
+
+
+
+
+
+
+
+
+https://jsfiddle.net/mahbub/qx4tajL6/
+
+
+
+var characters = [
+  { 'name': 'barney', 'age': 42,  'pet': 'dog' },
+  { 'name': 'fred',   'age': 35,  'pet': 'dog' },
+  { 'name': 'barney', 'age': 42,  'pet': 'cat' },
+  { 'name': 'fred',   'age': 35,  'pet': 'goldfish' }
+];
+
+var result=_.chain(characters).groupBy("name").map(function(v, i) {
+  return {
+    name: i,
+    age: _.get(_.find(v, 'age'), 'age'),
+    pet: _.map(v, 'pet')
+  }
+}).value();
+document.body.innerHTML = '<pre>' + JSON.stringify(result, null, '  ') + '</pre>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+multiple phone (Main on)
+
+process-transacton table
+
+
+
+
+
+
+
+
+
+
+
+
+      <form>
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstName" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastName" />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          placeholder="Confirm Password"
+          formControlName="confirmPassword"
+        />
+      </mat-form-field>
+      <button mat-raised-button color="primary">Register</button>
+    </form>
+

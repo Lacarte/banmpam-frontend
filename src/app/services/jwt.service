@@ -1,0 +1,35 @@
+
+import {tap} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import {HttpInterceptor,  HttpErrorResponse, HttpRequest, HttpHandler, HttpEvent} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import { Router } from '@angular/router';
+
+
+@Injectable()
+export class JwtService implements HttpInterceptor{
+
+  constructor(private router:Router){}
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const seguridad:{username:string,token:string}=JSON.parse(localStorage.getItem('token'));
+    if(seguridad!=null){
+
+      const headers={
+        'Authorization':`JWT ${seguridad.token}`,
+        'Content-Type':'application/json'
+      };
+      const clone=req.clone({setHeaders:headers});
+      return next.handle(clone).pipe(tap(event => {}, err => {
+        if (err instanceof HttpErrorResponse && err.status == 401) {
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }else{
+          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        }
+      }));
+    }
+    return next.handle(req);
+  }
+
+}

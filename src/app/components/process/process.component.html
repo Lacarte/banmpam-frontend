@@ -1,0 +1,24 @@
+<div class="title-header mb-4">send / receive</div>
+
+<mat-tab-group mat-align-tabs="start"  [@.disabled]="true">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon fontSet="fas" fontIcon="fa-donate"></mat-icon>
+      Send
+    </ng-template>
+   <div class="row flex-row-reverse mx-3">
+    <button mat-button (click)="dialogSendHistory()">
+    <mat-icon fontSet="fas" fontIcon="fa-history"></mat-icon>
+  </button>
+</div>
+    <app-send></app-send>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <!-- <mat-icon class="example-tab-icon">payment</mat-icon> -->
+      <mat-icon fontSet="fas" fontIcon="fa-gift"></mat-icon>
+      &nbsp; Receive
+    </ng-template>
+    <app-receive></app-receive>
+  </mat-tab>
+</mat-tab-group>
